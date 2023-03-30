@@ -2,6 +2,8 @@
 
 This is a **very** basic WPF application for Windows that uses a UI similar to ChatGPT.
 
+Add your OpenAI API key to the appropriate line of EditorViewModel.cs
+
 This application is dependent on the OpenAI Nuget Package by OkGoDoIt.
 + [OpenAI Package](https://www.nuget.org/packages/OpenAI/)
 
