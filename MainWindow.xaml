@@ -1,0 +1,50 @@
+﻿<Window x:Class="ClientGPT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientGPT"
+        xmlns:viewmodels="clr-namespace:ClientGPT.ViewModels"
+        mc:Ignorable="d"
+        Title="ClientGPT" Height="456" Width="814" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodels:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <TextBox HorizontalAlignment="Left" Margin="10,365,0,0" TextWrapping="Wrap" 
+                 DataContext="{Binding Editor}"
+                 Text="{Binding Input.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 VerticalAlignment="Top" Width="659" Height="43" FontWeight="Bold"/>
+        <Button Content="Submit" 
+                DataContext="{Binding Editor}"
+                Command="{Binding InputCommand}"
+                HorizontalAlignment="Left" Margin="674,365,0,0" VerticalAlignment="Top" Height="43" Width="112"/>
+        <ScrollViewer HorizontalAlignment="Left" Margin="10,125,0,0"
+            VerticalAlignment="Top" Height="235" Width="659">
+            <TextBox TextWrapping="Wrap" 
+                     DataContext="{Binding Editor}"
+                     Text="{Binding Output.Text,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="643" IsReadOnly="True"
+                     />
+        </ScrollViewer>
+
+        <TextBlock x:Name="Prompt" HorizontalAlignment="Left" Margin="10,44,0,0" TextWrapping="Wrap" 
+                   DataContext="{Binding Editor}"
+                   Text="{Binding Prompt.Text, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                   VerticalAlignment="Top" Height="58" Width="659" FontWeight="Bold"/>
+        <Separator HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top" Height="18" RenderTransformOrigin="0.5,0.5" Width="659">
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
+        <Label Content="Model:" HorizontalAlignment="Left" Margin="674,313,0,0" VerticalAlignment="Top" Height="25" Width="112" FontWeight="Bold"/>
+        <ComboBox HorizontalAlignment="Left" Margin="674,338,0,0" VerticalAlignment="Top" Width="112" SelectedIndex="0">
+            <ComboBoxItem Content="gpt-3.5-turbo-0301"></ComboBoxItem>
+        </ComboBox>
+    </Grid>
+</Window>
