@@ -11,40 +11,74 @@
         <viewmodels:MainViewModel/>
     </Window.DataContext>
 
-    <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="10,365,0,0" TextWrapping="Wrap" 
+
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Background="WhiteSmoke" Foreground="Black" Height="18">
+            <Menu.Items>
+                <MenuItem Header="File" DataContext="{Binding File}">
+                    <MenuItem Header="Save Conversation" Command="{Binding SaveAsCommand}" />
+                    <MenuItem Header="Quit" Command="{Binding QuitCommand}" />
+                </MenuItem>
+                <MenuItem Header="Help" DataContext="{Binding About}" >
+                    <MenuItem Header="About" Command="{Binding HelpCommand}" />
+                </MenuItem>
+            </Menu.Items>
+        </Menu>
+
+        <Grid Height="378">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBox HorizontalAlignment="Left" Margin="10,313,0,0" TextWrapping="Wrap" 
                  DataContext="{Binding Editor}"
                  Text="{Binding Input.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 VerticalAlignment="Top" Width="659" Height="43" FontWeight="Bold"/>
-        <Button Content="Submit" 
-                DataContext="{Binding Editor}"
-                Command="{Binding InputCommand}"
-                HorizontalAlignment="Left" Margin="674,365,0,0" VerticalAlignment="Top" Height="43" Width="112"/>
-        <ScrollViewer HorizontalAlignment="Left" Margin="10,125,0,0"
-            VerticalAlignment="Top" Height="235" Width="659">
-            <TextBox TextWrapping="Wrap" 
-                     DataContext="{Binding Editor}"
-                     Text="{Binding Output.Text,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="643" IsReadOnly="True"
-                     />
-        </ScrollViewer>
+                 VerticalAlignment="Top" Width="659" Height="62" FontWeight="Bold"/>
 
-        <TextBlock x:Name="Prompt" HorizontalAlignment="Left" Margin="10,44,0,0" TextWrapping="Wrap" 
+            <ScrollViewer HorizontalAlignment="Left" Margin="10,73,0,0"
+            VerticalAlignment="Top" Height="201" Width="776">
+                <TextBox TextWrapping="Wrap" 
+                     DataContext="{Binding Editor}"
+                     Text="{Binding Output.Text,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="763" IsReadOnly="True"
+                     />
+            </ScrollViewer>
+
+            <TextBlock x:Name="Prompt" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" 
                    DataContext="{Binding Editor}"
                    Text="{Binding Prompt.Text, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                   VerticalAlignment="Top" Height="58" Width="659" FontWeight="Bold"/>
-        <Separator HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top" Height="18" RenderTransformOrigin="0.5,0.5" Width="659">
-            <Separator.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="-1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Separator.RenderTransform>
-        </Separator>
-        <Label Content="Model:" HorizontalAlignment="Left" Margin="674,313,0,0" VerticalAlignment="Top" Height="25" Width="112" FontWeight="Bold"/>
-        <ComboBox HorizontalAlignment="Left" Margin="674,338,0,0" VerticalAlignment="Top" Width="112" SelectedIndex="0">
-            <ComboBoxItem Content="gpt-3.5-turbo-0301"></ComboBoxItem>
-        </ComboBox>
-    </Grid>
+                   VerticalAlignment="Top" Height="58" Width="462"/>
+            <Separator HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Height="18" RenderTransformOrigin="0.5,0.5" Width="778">
+                <Separator.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Separator.RenderTransform>
+            </Separator>
+            <Label Content="Model:" HorizontalAlignment="Left" Margin="674,289,0,0" VerticalAlignment="Top" Height="25" Width="130"/>
+            <ComboBox HorizontalAlignment="Left" Margin="674,314,0,0" VerticalAlignment="Top" Width="112" SelectedIndex="0">
+                <ComboBoxItem Content="gpt-3.5-turbo-0301"></ComboBoxItem>
+            </ComboBox>
+            <Button 
+        
+                Content="Submit" 
+                    DataContext="{Binding Editor}"
+                    Command="{Binding InputCommand}"
+                    HorizontalAlignment="Left" Margin="674,341,0,0" VerticalAlignment="Top" Height="34" Width="112"/>
+            <Label Content="Prompt:" HorizontalAlignment="Left" Margin="10,288,0,0" VerticalAlignment="Top" Height="25" Width="130"/>
+            <TextBox HorizontalAlignment="Left" Margin="472,10,0,0" TextWrapping="Wrap" 
+                DataContext="{Binding Editor}"
+                Text="{Binding APIkey.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                VerticalAlignment="Top" Width="314" Height="19" FontSize="9"/>
+            <Label Content="API Key:" HorizontalAlignment="Left" Margin="472,-15,0,0" VerticalAlignment="Top" Height="25" Width="130"/>
+            <Button Content="Paste" DataContext="{Binding Editor}" Command="{Binding PasteAPIkey}" HorizontalAlignment="Left" Margin="690,34,0,0" VerticalAlignment="Top" Height="24" Width="96"/>
+        </Grid>
+
+
+
+
+
+    </DockPanel>
 </Window>
