@@ -11,4 +11,4 @@ This application is dependent on the OpenAI Nuget Package by OkGoDoIt.
 
 It currently can only display one 'chat' (prompt plus response) at a time.
 The application also only supports the gpt3.5-turbo model.
-Saveing conversations does not work.
+Saving conversations does not work.
